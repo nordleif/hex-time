@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+      html body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+      }
+      .background {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          vertical-align: middle;
+      }
+      .center {
+          /*width: 50%;*/
+          margin: auto;
+          position: absolute;
+          top: 50%; left: 50%;
+          -webkit-transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+              transform: translate(-50%,-50%);
+      }      
+      .time {
+          color: white;
+          font-family: 'Lato', Helvetiva, Arial, sans-serif;
+          text-align: center;
+          font-size: 4.5em;
+          display: block;
+          min-width: 200px;
+          font-weight: 100;
+      }
+  </style>    
+</head>
+<body>
+    <div class="background">
+        <div class="center">
+            <p class="time"></p>
+        </div>    
+    </div>
+    <script>
+        function update()
+        {
+            let now = new Date()
+
+            let hh = now.getHours();
+            if (hh <= 9) {
+                hh = '0' + hh
+            };
+
+            let mm = now.getMinutes();
+            if (mm <= 9) {
+                mm = '0' + mm
+            };
+
+            let ss = now.getSeconds();
+            if (ss <= 9) {
+                ss = '0' +ss
+            };
+            
+            let	color = '#' + hh + mm + ss;
+            let text = hh + ':' + mm + ':' + ss;
+            
+            document.querySelector('.background').style.background = color;
+            document.querySelector('.time').innerHTML = text;
+
+            setTimeout(update, 1000);
+        }
+        update();
+    </script>
+</body>
+</html>
